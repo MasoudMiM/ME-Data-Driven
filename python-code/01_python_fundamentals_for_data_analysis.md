@@ -20,12 +20,24 @@ Python has four main data types you'll use constantly in data analysis:
 temperature = 23.5          # float
 sensor_count = 10           # int
 
-# Text for labels and categories
-sensor_id = "TEMP_001"      # string
-status = "active"           # string
+# Text for labels and categories - Multiple string formats
+sensor_id = "TEMP_001"      # string with double quotes
+status = 'active'           # string with single quotes
+description = '''Multi-line
+string example'''           # string with triple quotes
+
+# Handle special characters in strings
+my_string = "He is 5' 8\" tall"  # Using escape characters
 
 # True/False for conditions
 is_working = True           # boolean
+is_offline = False          # boolean
+
+# Check data types
+print(type(temperature))    # <class 'float'>
+print(type(sensor_count))   # <class 'int'>
+print(type(sensor_id))      # <class 'str'>
+print(type(is_working))     # <class 'bool'>
 ```
 
 ### 2. Lists - Your Data Collections
@@ -36,23 +48,56 @@ Lists store multiple values - perfect for sensor readings:
 # Temperature readings over time
 temperatures = [22.1, 23.5, 24.2, 23.8, 22.9]
 
+# Lists can contain mixed data types
+mixed_list = ['sensor1', 'sensor2', 10, 23.5, True]
+
 # Access data
 first_temp = temperatures[0]      # 22.1
-last_temp = temperatures[-1]      # 22.9
+last_temp = temperatures[-1]      # 22.9 (negative indexing)
+second_last = temperatures[-2]    # 23.8
 all_but_first = temperatures[1:]  # [23.5, 24.2, 23.8, 22.9]
 
-# Add new data
-temperatures.append(24.1)
+# Slice with step (every 3rd element starting from index 0)
+every_third = temperatures[0::3]  # [22.1, 23.8]
 
 # Calculate basic stats
 average = sum(temperatures) / len(temperatures)
 maximum = max(temperatures)
 minimum = min(temperatures)
 ```
+#### List Methods
 
+Lists have many built-in methods for data manipulation:
+
+```python
+# Add single item
+temperatures.append(20)
+
+# Add multiple items
+temperatures.extend([10, 12, 24, 16, 20])
+
+# Count occurrences
+count_20 = temperatures.count(20)  # How many times 20 appears
+
+# Remove and return last item
+last_item = temperatures.pop()
+
+# Copy lists (creates independent copy)
+temperatures_backup = temperatures.copy()
+
+# Sort list (modifies original)
+temperatures.sort()              # Ascending order
+temperatures.sort(reverse=True)  # Descending order
+
+# Get list length
+list_length = len(temperatures)
+
+# Sum all numeric values
+total = sum(temperatures)
+```
 ### 3. Dictionaries - Structured Data
 
-Dictionaries store related information together:
+Dictionaries store related information together using key-value pairs:
 
 ```python
 # Single sensor reading
@@ -66,7 +111,25 @@ sensor_reading = {
 
 # Access values
 temp = sensor_reading['temperature']
-sensor_reading['battery'] = 87  # Add new data
+status = sensor_reading['status']
+
+# Add new data
+sensor_reading['battery'] = 87
+
+# Dictionaries can have various key types and value types
+mixed_dict = {
+    'key1': [1, 2, 3, 4, 5],      # string key, list value
+    10: 'value1',                  # integer key, string value
+    True: [12.3, 'value2']         # boolean key, list value
+}
+
+# Add new key-value pairs
+mixed_dict[20] = 'my_string'
+
+# Access dictionary information
+keys = mixed_dict.keys()      # Get all keys
+values = mixed_dict.values()  # Get all values
+items = mixed_dict.items()    # Get all key-value pairs
 ```
 
 ### 4. Loops for Processing Data
