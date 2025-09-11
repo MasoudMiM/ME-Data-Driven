@@ -470,9 +470,9 @@ Modify your `co2_statistics` function from Exercise 5C to handle errors:
 - Use try/except blocks to catch and handle errors gracefully
 - Test with these problematic inputs:
   ```python
-  test_data_1 = []  # Empty list
-  test_data_2 = ["sensor_error", "offline", None]  # No valid numbers
-  test_data_3 = [410.5, "error", 425.8, 398.2]  # Mixed valid/invalid
+  test_data_1 = []  # an empty list
+  test_data_2 = ["sensor_error", "offline", None]  # no valid numbers
+  test_data_3 = [410.5, "error", 425.8, 398.2]  # mixed valid/invalid
   ```
 
 ---
@@ -482,10 +482,10 @@ Modify your `co2_statistics` function from Exercise 5C to handle errors:
 def validate_and_process_reading(reading):
     """Validate a single sensor reading"""
     try:
-        # Try to convert to float
+        # attempt to convert to float
         temp = float(reading)
         
-        # Check reasonable range for temperature
+        # some reasonable range for temperature
         if -50 <= temp <= 60:
             return {'valid': True, 'value': temp, 'error': None}
         else:
@@ -496,7 +496,7 @@ def validate_and_process_reading(reading):
     except Exception as e:
         return {'valid': False, 'value': None, 'error': f'Unexpected error: {e}'}
 
-# Example usage
+# calling the function
 test_readings = [25.3, "error", None, "22.1", 150, -100]
 for reading in test_readings:
     result = validate_and_process_reading(reading)
@@ -530,7 +530,7 @@ def comprehensive_weather_processor(sensor_readings):
     }
     
     try:
-        # Process each reading
+        # processing each reading
         for i, reading in enumerate(sensor_readings):
             validation = validate_and_process_reading(reading)
             
@@ -540,7 +540,7 @@ def comprehensive_weather_processor(sensor_readings):
                 results['invalid_count'] += 1
                 results['error_types'].append(f"Position {i}: {validation['error']}")
         
-        # Calculate statistics if we have valid data
+        # statistics if we have valid data
         if results['valid_readings']:
             results['statistics'] = {
                 'count': len(results['valid_readings']),
