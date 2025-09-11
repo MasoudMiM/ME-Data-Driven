@@ -171,8 +171,6 @@ items = mixed_dict.items()    # Get all key-value pairs
 
 ---
 
-## Advanced Python Concepts (continued)
-
 ### 4. Loops for Processing Data
 
 Process multiple data points efficiently with different loop patterns:
