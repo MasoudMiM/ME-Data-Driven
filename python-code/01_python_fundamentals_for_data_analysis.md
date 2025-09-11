@@ -154,11 +154,11 @@ items = mixed_dict.items()    # Get all key-value pairs
 
 ### Exercise 3: Monitor Information System
 1. Create a dictionary called `air_monitor` with these key-value pairs:
-   - 'device_id': 'AQM_2024_001'
-   - 'building': 'Science Hall'
-   - 'floor': 3
-   - 'measurements': ['CO2', 'PM2.5', 'temperature']
-   - 'calibrated': True
+   - `device_id`: `AQM_2024_001`
+   - `building`: `Science Hall`
+   - `floor`: 3
+   - `measurements`: [`CO2`, `PM2.5`, `temperature`]
+   - `calibrated`: True
 
 2. Add a new key-value pair: `last_service`:`2024-02-01`
 
@@ -196,15 +196,6 @@ for i in range(len(temperatures)):
     print(f"Reading {i}: {temperatures[i]}°C")
 ```
 
-### 📝 Exercise 4A: Basic Loop Practice
-**Add this to your notebook after learning basic loops:**
-
-Using your `weekly_co2` list from Part 1, write a loop that:
-- Classifies each CO2 reading as "Good" (<400 ppm), "Moderate" (400-450 ppm), or "Poor" (>450 ppm)
-- Prints the results in this format: "Week 1: 405.2 ppm - Moderate"
-
----
-
 #### Conditional Processing and Counting
 ```python
 # Count items meeting specific conditions
@@ -226,8 +217,17 @@ for temp in temperatures:
 print(f"Summary: {hot_readings} warm, {mild_readings} mild, {cold_readings} cold")
 ```
 
+### 📝 Exercise 4A: Basic Loop Practice
+**Add these to your notebook after learning loops:**
+
+Using your `weekly_co2` list from before, write a loop that:
+- Classifies each CO2 reading as "Good" (<400 ppm), "Moderate" (400-450 ppm), or "Poor" (>450 ppm)
+- Prints the results in this format: "Week 1: 405.2 ppm - Moderate"
+
+---
+
+
 ### 📝 Exercise 4B: Counting with Loops
-**Add this to your notebook after learning conditional processing:**
 
 1. Modify your code from Exercise 4A to also count how many readings fall into each air quality category
 2. Print a summary showing the total count for each category (Good, Moderate, Poor)
@@ -236,7 +236,7 @@ print(f"Summary: {hot_readings} warm, {mild_readings} mild, {cold_readings} cold
 
 #### Data Filtering with Loops
 ```python
-# Filter valid data from mixed input
+# filtering valid data from mixed input
 mixed_data = [22.1, "error", 25.3, None, 21.8, "offline", 24.7]
 valid_temps = []
 invalid_count = 0
@@ -477,7 +477,7 @@ Modify your `co2_statistics` function from Exercise 5C to handle errors:
 
 ---
 
-#### Using Error Handling with Data Validation
+#### Using Error Handling with Data Validation (Optional)
 ```python
 def validate_and_process_reading(reading):
     """Validate a single sensor reading"""
@@ -506,7 +506,7 @@ for reading in test_readings:
         print(f"Invalid '{reading}': {result['error']}")
 ```
 
-### 📝 Exercise 6C: Data Validation with Error Handling
+### 📝 Exercise 6C: Data Validation with Error Handling (Optional)
 **Add this to your notebook after learning about data validation:**
 
 Write a function called `validate_co2_reading(reading)` that:
@@ -518,7 +518,7 @@ Write a function called `validate_co2_reading(reading)` that:
 
 ---
 
-#### Comprehensive Data Processing Function
+#### Comprehensive Data Processing Function (Optional)
 ```python
 def comprehensive_weather_processor(sensor_readings):
     """Complete weather data processing with error handling"""
@@ -555,7 +555,7 @@ def comprehensive_weather_processor(sensor_readings):
         return {'error': f'Processing failed: {e}'}
 ```
 
-### 📝 Exercise 6D: Final Comprehensive Exercise
+### 📝 Exercise 6D: Final Comprehensive Exercise (Optional)
 **Add this to your notebook:**
 
 Create a comprehensive air quality data processor by writing a function called `process_air_quality_data(sensor_readings)` that:
