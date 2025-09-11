@@ -558,7 +558,7 @@ def comprehensive_weather_processor(sensor_readings):
 ```
 
 ### 📝 Exercise 6D: Final Comprehensive Exercise
-**Add this to your notebook - combining all concepts learned:**
+**Add this to your notebook:**
 
 Create a comprehensive air quality data processor by writing a function called `process_air_quality_data(sensor_readings)` that:
 - Takes a list of mixed CO2 sensor readings (numbers, strings, None values)
@@ -583,7 +583,7 @@ Your function should return something like:
 
 ## Submission Instructions
 
-**Submit your completed Jupyter notebook** (`your_name_python_fundamentals.ipynb`) containing all exercises from both parts. Make sure your notebook includes:
+**Submit your completed Jupyter notebook** (`your_name_python_fundamentals.ipynb`). Make sure your notebook includes:
 
 - Clear section headers for each exercise
 - Well-commented code explaining your approach
