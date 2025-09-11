@@ -125,7 +125,7 @@ items = mixed_dict.items()    # Get all key-value pairs
 
 ---
 
-## 📝 IN-CLASS ASSIGNMENT - Data Fundamentals
+## 📝 IN-CLASS ASSIGNMENT - Python Fundamentals
 
 **Create a new Jupyter notebook** named `your_name_python_fundamentals.ipynb`
 
