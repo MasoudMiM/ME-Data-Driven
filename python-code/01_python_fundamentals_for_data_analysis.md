@@ -393,7 +393,7 @@ Write a function called `clean_particle_data(mixed_data)` that:
 
 ---
 
-### 6. Error Handling
+### 6. Error Handling (Optional)
 
 Handle problems gracefully using try/except blocks:
 
@@ -412,7 +412,7 @@ def safe_division(a, b):
         return None
 ```
 
-### 📝 Exercise 6A: Basic Error Handling
+### 📝 Exercise 6A: Basic Error Handling (Optional)
 **Add this to your notebook after learning basic error handling:**
 
 Write a function called `safe_co2_percentage(current_co2, baseline_co2)` that:
@@ -423,7 +423,7 @@ Write a function called `safe_co2_percentage(current_co2, baseline_co2)` that:
 
 ---
 
-#### Handling Different Types of Errors
+#### Handling Different Types of Errors (Optional)
 ```python
 def safe_temperature_stats(temp_list):
     """Calculate temperature statistics with error handling"""
@@ -461,7 +461,7 @@ def safe_temperature_stats(temp_list):
         return {'error': f'Unexpected error: {e}'}
 ```
 
-### 📝 Exercise 6B: Comprehensive Error Handling
+### 📝 Exercise 6B: Comprehensive Error Handling (Optional)
 **Add this to your notebook after learning about different error types:**
 
 Modify your `co2_statistics` function from Exercise 5C to handle errors:
