@@ -13,9 +13,8 @@
     - Géron, A. (2022). "[Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems.](https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646)" O'Reilly Media, Inc.
 
 ## Assessment Structure:
-- **Midterm Exam:** 25%
-- **Final Exam:** 25%
-- **Final Project:** 15%
+- **Midterm Exam/Project:** 30%
+- **Final Project:** 35%
 - **Weekly Assignments:** 30%
 - **Class Participation:** 5%
 
