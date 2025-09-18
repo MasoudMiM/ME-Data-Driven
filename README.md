@@ -16,8 +16,8 @@
 - **Midterm Exam:** 25%
 - **Final Exam:** 25%
 - **Final Project:** 15%
-- **Weekly Assignments:** 20%
-- **Class Participation & Assignments:** 15%
+- **Weekly Assignments:** 30%
+- **Class Participation:** 5%
 
 ## Course Agenda
 
