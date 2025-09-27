@@ -39,6 +39,10 @@ evenly_spaced = np.linspace(0, 100, 5) # [0, 25, 50, 75, 100]
 
 # Random data - good for simulations
 random_temps = np.random.normal(25, 3, 10)  # 10 temps, mean=25, std=3
+
+# Getting help on numpy functions
+# np.tan?  # Shows documentation for tan function
+# np.pi?   # Shows information about pi constant
 ```
 
 ### 📝 Exercise 1: NumPy Array Creation
@@ -54,7 +58,7 @@ random_temps = np.random.normal(25, 3, 10)  # 10 temps, mean=25, std=3
 
 ---
 
-### Array Operations
+### Array Operations and Boolean Indexing
 
 ```python
 # doing math on arrays
@@ -66,6 +70,15 @@ kelvin = celsius + 273.15
 print(f"Average: {np.mean(celsius)}")
 print(f"Standard deviation: {np.std(celsius)}")
 print(f"Maximum: {np.max(celsius)}")
+
+# Boolean indexing - finding values that meet conditions
+ex_array = np.array([5, 7, 12, 10, 22, 8])
+my_mask = ex_array > 10                # Creates boolean array [False, False, True, False, True, False]
+values_above_10 = ex_array[my_mask]    # Returns [12, 22]
+print(f"Values above 10: {values_above_10}")
+
+# You can also do this in one line
+high_values = ex_array[ex_array > 10]
 ```
 
 ### 📝 Exercise 2: Array Operations and Statistics
@@ -100,6 +113,10 @@ temp_day_1 = sensor_data[0, 0]     # temperature on day 1
 # max calculations per row and per columns
 print(np.max(sensor_data, axis=1))
 print(np.max(sensor_data, axis=0))
+
+# Accessing nested lists (before converting to arrays)
+list2 = [1, 2, [4, 5, 6, 7], 2, [2, 6]]
+first_element_of_nested = list2[2][0]  # Gets 4 from the nested list
 ```
 
 ### 📝 Exercise 3: Working with 2D Arrays
@@ -147,6 +164,12 @@ print(df)
 
 # looking at data types
 print(df.dtypes)
+
+# Getting DataFrame dimensions
+print(f"Shape: {df.shape}")                          # (rows, columns)
+print(f"Number of rows: {df.shape[0]}")
+print(f"Number of columns: {df.shape[1]}")
+print(f"Alternative - columns via transpose: {len(df.T)}")  # Using transpose
 ```
 
 ### 📝 Exercise 4: Creating Your First DataFrame
@@ -224,10 +247,16 @@ df2
 print(df.head())        # first 5 rows
 print(df.tail())        # Last 5 rows
 print(df.info())        # data types and missing values
-print(df.describe())    # Summary statistics
+print(df.describe())    # Summary statistics for numerical columns
+
+# NEW: Describing categorical data
+print(df.describe(include=[object]))  # Summary statistics for text/object columns
 
 print(f"Shape: {df.shape}")              # (rows, columns)
 print(f"Columns: {df.columns.tolist()}")  # column names
+
+# NEW: Counting unique values in categorical columns
+print(df['sensor_id'].value_counts())     # Counts of each unique value
 ```
 
 ### 📝 Exercise 5: Loading and Exploring Real Data
@@ -244,15 +273,21 @@ print(f"Columns: {df.columns.tolist()}")  # column names
 
 ---
 
-### Selecting Data
+### Selecting Data (Enhanced with .loc and .iloc)
 
 ```python
+# Basic column selection
 freqs = df['Frequency (Hz)']           # single column (Series)
 frqs_attack = df[['Frequency (Hz)','Attack_Angle (deg)']]  # Multiple columns (dataframe)
 
-# selecting rows
+# selecting rows by position with .iloc
 first_row = df.iloc[0]             # by position
 first_three = df.iloc[0:3]         # first 3 rows
+subset_range = df.iloc[1:5, 2:5]   # rows 1-4, columns 2-4
+
+# selecting rows and columns by label with .loc
+specific_data = df.loc[[1, 4, 10], ['Frequency (Hz)', 'Attack_Angle (deg)']]  # specific rows and columns
+subset_rows = df.loc[0:5, 'Frequency (Hz)':'Cord (m)']  # slice by labels
 
 # filtering data
 high_frq = df[df['Frequency (Hz)'] > 1000]           # conditional filtering
@@ -260,6 +295,9 @@ high_frq = df[df['Frequency (Hz)'] > 1000]           # conditional filtering
 # combining conditions with & (and) and | (or)
 complex_filter = df[(df['Frequency (Hz)'] > 5000) & (df['Sound_Pressure_Level (dB)'] > 135)]
 print(complex_filter)
+
+# Advanced filtering with .loc
+filtered_with_loc = df_epa[(df_epa['Air Pollution Score'] > 3) & (df_epa['Displ']==3)].loc[80:85, ['Model','Fuel']]
 
 # counting filtered results
 count_high_freq = len(df[df['Frequency (Hz)'] > 5000])
@@ -274,7 +312,7 @@ Using the airfoil dataset you loaded in Exercise 5:
 3. Get rows 5 through 10 (inclusive) using iloc
 4. Filter the data to show only rows where frequency is greater than 2000 Hz
 5. Find rows where both frequency > 1000 Hz AND sound pressure level > 125 dB (use the `&` operator)
-6. Count how many rows meet the criteria in step 5 (hint: use `len()` on the filtered DataFrame)
+6. Count how many rows meet the criteria in step 6 (hint: use `len()` on the filtered DataFrame)
 
 ---
 
@@ -299,6 +337,12 @@ print(f"Data types:\n{df_messy.dtypes}")
 print("missing values:")
 print(df_messy.isnull().sum())
 
+# NEW: Calculate missing percentage for each column
+print("Missing percentages:")
+for col in df_messy.columns.tolist():
+    ratio = df_messy[col].isnull().sum() / len(df_messy)
+    print(f"Missing ratio for {col}: {ratio:.2f}")
+
 # cleaning steps
 # 1. convert temperature to numeric (errors become NaN)
 df_messy['temperature'] = pd.to_numeric(df_messy['temperature'], errors='coerce')
@@ -310,11 +354,16 @@ df_messy['timestamp'] = pd.to_datetime(df_messy['timestamp'])
 humidity_mean = df_messy['humidity'].mean()
 df_messy['humidity'] = df_messy['humidity'].fillna(humidity_mean)
 
-# 4. remove rows with missing temperature
-clean_df = df_messy.dropna(subset=['temperature'])
+# 4. remove rows with missing temperature - enhanced options
+clean_df = df_messy.dropna(subset=['temperature'])                    # remove if temperature is missing
+# clean_df = df_messy.dropna(subset=['temperature', 'sensor_id'], how='any')  # remove if ANY of these are missing
+# clean_df = df_messy.dropna(subset=['temperature', 'sensor_id'], how='all')  # remove if ALL of these are missing
 
 # 5. Remove duplicates
 clean_df = clean_df.drop_duplicates()
+
+# NEW: Working with string columns
+clean_df['sensor_id'] = clean_df['sensor_id'].str.title()  # Convert to title case
 
 print("cleaned data:")
 print(clean_df)
@@ -401,6 +450,13 @@ print(sensor_stats)
 # multiple aggregations for each group
 freq_summary = df.groupby('Attack_Angle (deg)')['Frequency (Hz)'].agg(['min', 'max', 'mean'])
 print(freq_summary)
+
+# NEW: Reset index to make groupby results easier to work with
+freq_summary_reset = df.groupby('Attack_Angle (deg)')['Frequency (Hz)'].agg(['min', 'max', 'mean']).reset_index()
+print(freq_summary_reset)
+
+# Converting specific columns to numeric for groupby operations
+df['City MPG'] = pd.to_numeric(df['City MPG'], errors='coerce')  # Example from EPA dataset
 ```
 
 **NOTE:** "groupby" follows a `SPLIT-APPLY-COMBINE` approach.
