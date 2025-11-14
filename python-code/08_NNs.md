@@ -193,14 +193,14 @@ for layer in model.layers:
     # YOUR CODE HERE
     print(f"\n{layer.name}:")
     print(f"  Weights (W): {weights.shape}")
-    print(f"  Biases (b):  {weights.shape}")
+    print(f"  Biases (b):  {biases.shape}")
 
 # ASSERTIONS
 hidden_layer = model.get_layer('hidden_layer')
 output_layer = model.get_layer('output_layer')
 
-w1, b1 = hidden_layer.get_weights()
-w2, b2 = output_layer.get_weights()
+w1, b1 = hidden_layer.get_weights()[0], hidden_layer.get_weights()[1]
+w2, b2 = output_layer.get_weights()[0], output_layer.get_weights()[1]
 
 assert w1.shape == (2, 3), f"Hidden layer weights shape wrong! Got {w1.shape}"
 assert b1.shape == (3,), f"Hidden layer bias shape wrong! Got {b1.shape}"
