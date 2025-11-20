@@ -1,5 +1,4 @@
-# ME 371 - Data-Driven Problem Solving
-## In-Class Assignment: Special Topics
+# In-Class Assignment: Special Topics
 
 ## Overview
 
