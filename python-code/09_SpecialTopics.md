@@ -1,4 +1,4 @@
-# In-Class Assignment: Special Topics
+# In-Class Assignment - Special Topics
 
 ## Overview
 
